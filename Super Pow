@@ -1,0 +1,23 @@
+class Solution {
+    private static final int MOD = 1337;
+    private int modPow(int base, int exp) {
+        int result = 1;
+        base %= MOD;
+        while (exp > 0) {
+            if (exp % 2 == 1) {
+                result = (result * base) % MOD;
+            }
+            base = (base * base) % MOD;
+            exp /= 2;
+        }
+        return result;
+    }
+
+    public int superPow(int a, List<Integer> b) {
+        int result = 1;
+        for (int digit : b) {
+            result = (modPow(result, 10) * modPow(a, digit)) % MOD;
+        }
+        return result;
+    }
+}
